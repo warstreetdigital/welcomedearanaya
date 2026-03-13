@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anaya Makanaka | First Memory</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:Inter, sans-serif;
+  background:#fff7fb;
+  color:#222;
+  overflow-x:hidden;
+}
+
+/* SUNRISE AMBIENT BEHIND PAGE */
+body:before{
+  content:"";
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background:
+    radial-gradient(circle at 50% 20%, rgba(255,170,210,0.25), transparent 40%),
+    radial-gradient(circle at 70% 40%, rgba(255,200,220,0.18), transparent 50%),
+    radial-gradient(circle at 30% 70%, rgba(255,180,200,0.18), transparent 50%);
+  z-index:-1;
+  animation: glowmove 18s infinite alternate ease-in-out;
+}
+@keyframes glowmove{0%{transform:scale(1)}100%{transform:scale(1.1)}}
+
+/* PAGE WRAPPER */
+.wrapper{
+  max-width:950px;
+  margin:auto;
+  padding:60px 20px 120px;
+}
+
+/* CARD BASE */
+.card{
+  background:rgba(255,255,255,0.92);
+  border-radius:22px;
+  padding:40px;
+  margin-bottom:50px;
+  box-shadow:0 30px 60px rgba(0,0,0,0.08),0 0 40px rgba(255,190,210,0.25);
+  backdrop-filter:blur(12px);
+  position:relative;
+  animation:fadeUp .8s ease;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+
+/* HERO */
+.hero{
+  position:relative;
+  padding:120px 20px 80px;
+  border-radius:24px;
+  background:linear-gradient(135deg,#ffe0f0,#fff0fa);
+  overflow:hidden;
+  box-shadow:0 20px 50px rgba(255,100,180,0.2);
+}
+.hero-content{
+  position:relative;
+  z-index:1;
+  text-align:center;
+}
+.hero h1{
+  font-family:"Playfair Display", serif;
+  font-size:60px;
+  font-weight:700;
+  background:linear-gradient(90deg,#ff4fa3,#ff7fb3);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  margin-bottom:12px;
+  text-shadow:0 2px 8px rgba(0,0,0,0.12);
+}
+.hero .subtitle{
+  font-size:22px;
+  font-weight:500;
+  color:#ff7fb3;
+  opacity:0.85;
+  margin-bottom:8px;
+}
+.hero .meta{
+  font-size:16px;
+  font-weight:600;
+  opacity:.8;
+  margin-top:10px;
+}
+
+/* AGE COUNTER */
+.counter{
+  font-family:"Playfair Display", serif;
+  font-size:32px;
+  text-align:center;
+  font-weight:700;
+  color:#ff4fa3;
+}
+.counter-label{
+  text-align:center;
+  font-size:16px;
+  font-weight:600;
+  color:#ff7fb3;
+  margin-bottom:10px;
+}
+
+/* SECTION TITLES */
+.section-title{
+  font-family:"Playfair Display", serif;
+  font-size:32px;
+  font-weight:700;
+  margin-bottom:25px;
+  color:#ff4fa3;
+}
+
+/* SLIDER */
+.slider{
+  position:relative;
+  height:520px;
+  border-radius:16px;
+  overflow:hidden;
+}
+.slide{
+  position:absolute;
+  width:100%;
+  height:100%;
+  opacity:0;
+  transition:opacity 1s ease;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.slide.active{opacity:1;}
+.slide img{
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+  z-index:2;
+}
+.slide:before{
+  content:"";
+  position:absolute;
+  width:100%;
+  height:100%;
+  background-size:cover;
+  background-position:center;
+  filter:blur(50px) brightness(.8);
+  transform:scale(1.2);
+}
+
+/* GRID FAMILY MOMENTS - 3 COLUMNS */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+.grid img{
+  width:100%;
+  border-radius:10px;
+  cursor:pointer;
+  transition:.3s;
+}
+.grid img:hover{transform:scale(1.05);}
+
+/* VIEWER MODAL */
+.viewer{
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background:rgba(0,0,0,.9);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:99;
+}
+.viewer img{
+  max-width:90%;
+  max-height:90%;
+}
+.close{
+  position:absolute;
+  top:25px; right:30px;
+  font-size:32px;
+  color:white;
+  cursor:pointer;
+}
+
+/* DIGITAL LETTER */
+.message{
+  font-size:19px;
+  line-height:1.8;
+  font-family:"Playfair Display", serif;
+  font-style:italic;
+  background:linear-gradient(135deg,#ffe0f0,#fff0fa);
+  padding:30px;
+  border-radius:18px;
+  box-shadow:0 20px 50px rgba(0,0,0,0.05),0 0 40px rgba(255,190,210,0.15);
+  position:relative;
+}
+
+/* AUDIO PLAYER */
+.player{
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+.playbtn{
+  width:70px; height:70px;
+  border-radius:50%;
+  border:none;
+  background:#ff4fa3;
+  color:white;
+  font-size:28px;
+  cursor:pointer;
+}
+
+/* FOOTER */
+.footer{
+  text-align:center;
+  padding:40px 20px;
+  font-size:14px;
+  color:#555;
+  border-top:1px solid rgba(255,0,100,0.2);
+}
+.footer span{font-weight:700; color:#ff4fa3;}
+
+/* LOCK INTERACTIONS */
+body{user-select:none;}
+
+/* RESPONSIVE HERO */
+@media(max-width:768px){
+  .hero h1{font-size:40px;}
+  .hero .subtitle{font-size:18px;}
+  .slider{height:400px;}
+  .grid{grid-template-columns:repeat(2,1fr);}
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HERO -->
+  <div class="card hero">
+    <div class="hero-content">
+      <h1>Anaya Makanaka</h1>
+      <div class="subtitle">Welcome to the World</div>
+      <div class="meta">Born: March 3, 2026 • 14:38</div>
+    </div>
+  </div>
+
+  <!-- AGE COUNTER -->
+  <div class="card">
+    <div class="counter-label">Age Counter</div>
+    <div class="counter" id="ageCounter">Calculating...</div>
+  </div>
+
+  <!-- FIRST MOMENTS SLIDESHOW -->
+  <div class="card">
+    <div class="section-title">First Moments</div>
+    <div class="slider">
+      <div class="slide active"><img src="first1.jpg"></div>
+      <div class="slide"><img src="first2.jpg"></div>
+      <div class="slide"><img src="first3.jpg"></div>
+      <div class="slide"><img src="first4.jpg"></div>
+      <div class="slide"><img src="first5.jpg"></div>
+      <div class="slide"><img src="first6.jpg"></div>
+      <div class="slide"><img src="first7.jpg"></div>
+    </div>
+  </div>
+
+  <!-- SONG -->
+  <div class="card">
+    <div class="section-title">Anaya's Welcome Song</div>
+    <div class="player">
+      <button class="playbtn" onclick="toggleSong()">▶</button>
+      <span>Listen to the Welcome Song</span>
+      <audio id="audio" src="anaya-song.mp3"></audio>
+    </div>
+  </div>
+
+  <!-- FAMILY MOMENTS -->
+  <div class="card">
+    <div class="section-title">Family Moments</div>
+    <div class="grid">
+      <img src="family1.jpg">
+      <img src="family2.jpg">
+      <img src="family3.jpg">
+      <img src="family4.jpg">
+      <img src="family5.jpg">
+      <img src="family6.jpg">
+      <img src="family7.jpg">
+      <img src="family8.jpg">
+      <img src="family9.jpg">
+    </div>
+  </div>
+
+  <!-- MESSAGE FROM GRANDMA -->
+  <div class="card">
+    <div class="section-title">A Message For You</div>
+    <div class="message">
+      Hey Anaya Makanaka. Watching you grow inside your mother's womb was the most amazing thing we have ever experienced. Meeting you for the first time was mind boggling.<br><br>
+      We welcome you to our amazing family as our first grandchild. We are so excited to see you grow into an amazing person.<br><br>
+      We love you deeply and may you grow in favour of men and God, honoring God above all else.<br><br>
+      Love Grandma, Grandpa, Uncle Panashe and Uncle Tadiwa.
+    </div>
+  </div>
+
+</div>
+
+<!-- VIEWER MODAL -->
+<div class="viewer" id="viewer">
+  <div class="close" onclick="closeViewer()">✕</div>
+  <img id="viewerImg">
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <span>A Digital Memory Created With Love from Julia Kazungu.</span><br>
+  Powered by WarStreet Experience Model.
+</div>
+
+<script>
+// LOCK INTERACTIONS
+document.addEventListener('contextmenu', e=>e.preventDefault());
+document.onkeydown=function(e){
+ if(e.keyCode==123) return false;
+ if(e.ctrlKey && e.shiftKey && ['I','J','C'].includes(e.key.toUpperCase())) return false;
+ if(e.ctrlKey && e.key.toLowerCase()=='u') return false;
+};
+document.body.onselectstart=()=>false;
+document.body.ondragstart=()=>false;
+
+// AGE COUNTER
+const birth=new Date("March 3 2026 14:38:00");
+function updateAge(){
+  let now=new Date();
+  let diff=now-birth;
+  let days=Math.floor(diff/86400000);
+  let hours=Math.floor((diff%86400000)/3600000);
+  let mins=Math.floor((diff%3600000)/60000);
+  document.getElementById("ageCounter").innerHTML=days+" days "+hours+" hours "+mins+" minutes old";
+}
+setInterval(updateAge,1000);
+
+// SLIDESHOW
+let slides=document.querySelectorAll(".slide");
+let i=0;
+setInterval(()=>{
+  slides[i].classList.remove("active");
+  i=(i+1)%slides.length;
+  slides[i].classList.add("active");
+},4000);
+
+// FAMILY GRID VIEWER
+document.querySelectorAll(".grid img").forEach(img=>{
+  img.onclick=()=>{
+    document.getElementById("viewer").style.display="flex";
+    document.getElementById("viewerImg").src=img.src;
+  };
+});
+function closeViewer(){
+  document.getElementById("viewer").style.display="none";
+}
+
+// AUDIO PLAYER
+function toggleSong(){
+  let a=document.getElementById("audio");
+  if(a.paused){a.play()}else{a.pause();}
+}
+</script>
+</body>
+</html>
